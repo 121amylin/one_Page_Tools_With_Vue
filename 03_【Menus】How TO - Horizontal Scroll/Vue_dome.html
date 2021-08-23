@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue_dome</title>
+  <style>
+    * {
+      font-family: Microsoft JhengHei;
+    }
+
+    #app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .header {
+      width: 600px;
+      margin: auto;
+      overflow-x: scroll;
+      border: brown 1px solid;
+    }
+
+    .nav {
+      white-space: nowrap;
+    }
+
+    .nav li {
+      display: inline-block;
+    }
+
+
+    .nav li a {
+      display: inline-block;
+      padding: 8px 24px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <header class="header" ref="scrollBox">
+      <ul class="nav" @wheel="wheelHandle">
+        <li><a href="#">item1</a></li>
+        <li><a href="#">item2</a></li>
+        <li><a href="#">item3</a></li>
+        <li><a href="#">item4</a></li>
+        <li><a href="#">item5</a></li>
+        <li><a href="#">item6</a></li>
+        <li><a href="#">item7</a></li>
+        <li><a href="#">item8</a></li>
+      </ul>
+    </header>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
+    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
+    crossorigin='anonymous'></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+        }
+      },
+      computed: {},
+      methods: {
+        wheelHandle(e) {
+          const multiple = 50
+          e.preventDefault()
+          if (e.deltaY > 0) {
+            this.$refs.scrollBox.scrollLeft += multiple
+          } else {
+            this.$refs.scrollBox.scrollLeft -= multiple
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

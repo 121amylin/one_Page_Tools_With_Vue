@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>defaule_transition</title>
+  <style>
+    /* defaule_transition */
+    .v-enter-active,
+    .v-leave-active {
+      transition: opacity 1s;
+    }
+
+    .v-enter-from,
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+      opacity: 1;
+    }
+
+    /* 命名transition  expand ，感覺官網寫法錯誤反正試不出來 (看Kuro的)*/
+    .expand-enter-active,
+    .expand-leave-active {
+      transition: all .3s ease;
+    }
+
+    .expand-enter-from,
+    .expand-leave-to {
+      height: 30px;
+      padding: 10px;
+      background-color: #eee;
+      opacity: 0;
+    }
+
+    .expand-enter-to,
+    .expand-leave-from {
+      height: 0;
+      padding: 0 10px;
+      opacity: 1;
+    }
+
+    .text {
+      background-color: #eee;
+      padding: 10px 20px;
+      display: block;
+    }
+
+    .item-move {
+      /* applied to the element when moving */
+      transition: transform .5s cubic-bezier(.55, 0, .1, 1);
+    }
+
+    .item {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- defaule_transition -->
+    <transition>
+      <div class="block" v-show="isShow">HELLO VUE</div>
+    </transition>
+
+    <!-- 命名transition -->
+    <transition name="expand">
+      <div class="text" v-if="isShow">hello</div>
+    </transition>
+
+
+
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
+    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
+    crossorigin='anonymous'></script>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          isShow: true,
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

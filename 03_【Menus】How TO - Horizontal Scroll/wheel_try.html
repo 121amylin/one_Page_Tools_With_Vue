@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wheel_try</title>
+  <style>
+    .out_div {
+      width: 100%;
+      border: brown 1px solid;
+      overflow-x: scroll;
+    }
+
+    .in_div {
+      white-space: nowrap;
+      background-image: linear-gradient(to left, #d2e7ff, #0038a0)
+    }
+
+    .in_div li {
+      display: inline-block;
+      width: 400px;
+      height: 300px;
+      background-color: rgb(18, 0, 85);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="out_div">
+    <ul class="in_div">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script>
+    const out_div = document.querySelector(".out_div")
+    const in_div = document.querySelector('.in_div')
+    const long = in_div.offsetWidth
+    const multiple = 50
+    out_div.addEventListener('wheel', function (e) {
+      e.preventDefault()
+      if (e.deltaY > 0) {
+        this.scrollLeft += multiple
+      } else {
+        this.scrollLeft -= multiple
+      }
+    })
+  </script>
+</body>
+
+</html>

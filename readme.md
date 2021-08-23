@@ -1,45 +1,52 @@
 ### 01_[【Menus】How TO - Side Navigation](https://www.w3schools.com/howto/howto_js_sidenav.asp)
-
+ - Sidenav overlay / 動畫覆蓋
+ - Sidenav overlay without animation / 直接覆蓋
+ - Sidenav full-width / 版滿選單
 
 
 ****
 ### 02_[【Menus】How TO - Off-Canvas Menu](https://www.w3schools.com/howto/howto_js_off-canvas.asp)
-
+ - Sidenav push (off-canvas) / 動畫&推移
+ - Sidenav push w/opacity / 動畫&推移&黑頻遮罩
 
 
 ****
 ### 03_[【Menus】How TO - Horizontal Scroll Menu](https://www.w3schools.com/howto/howto_css_menu_horizontal_scroll.asp#news)
-
+- [JavaScript - 滑鼠滾輪水平滾動](https://codepen.io/RayPan/pen/aEPNaM)
+  - white-space: nowrap
+- [VUE中滑鼠滾輪使div左右滾動](https://www.796t.com/article.php?id=184045)
+- [mousewheel](https://caniuse.com/?search=mousewheel)=> firefox以外都支援
+- [DOMMouseScroll]https://caniuse.com/?search=DOMMouseScroll=> firefox支援
+- [wheel](https://caniuse.com/?search=wheel)=>都支援
+- [deltaY](https://caniuse.com/?search=deltaY)=>都支援
+- [JS滚轮事件(mousewheel/DOMMouseScroll)了解](https://www.zhangxinxu.com/wordpress/2013/04/js-mousewheel-dommousescroll-event/)
+- [原生JS如何判断鼠标滚动方向](https://zhuanlan.zhihu.com/p/164898432)
+- [一文读懂鼠标滚轮事件（wheelEvent）](https://segmentfault.com/a/1190000017390159)
+- [web超實用！html+css+js 禁止蒙層底部頁面跟隨滾動](https://kknews.cc/zh-tw/code/v85pep4.html)
 
 
 ****
 ### 04_[【Menus】How TO - Hide Menu on Scroll](https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp)
 
 
-
 ****
 ### 05_[【Images】How TO - Lightbox](https://www.w3schools.com/howto/howto_js_lightbox.asp)
-
 
 
 ****
 ### 06_[【Images】How TO - Portfolio Gallery with Filtering](https://www.w3schools.com/howto/howto_js_portfolio_filter.asp)
 
 
-
 ****
 ### 07_[【Images】How TO - Image Zoom](https://www.w3schools.com/howto/howto_js_image_zoom.asp)
-
 
 
 ****
 ### 08_[【Images】How TO - Image Magnifier Glass](https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp)
 
 
-
 ****
 ### 09_[【Images】How TO - Image Comparison Slider](https://www.w3schools.com/howto/howto_js_image_comparison.asp)
-
 
 
 ****

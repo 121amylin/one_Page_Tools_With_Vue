@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidenav overlay without animation / 直接覆蓋</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      min-height: 100vh;
+      padding: 30px;
+
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 6px 12px;
+      color: #000;
+      transition: color 0.3s;
+      font-size: 18px;
+    }
+
+    .router-link-active {
+      color: rgb(184, 43, 0);
+    }
+
+    .aside_nav {
+      display: flex;
+      flex-direction: column;
+      min-width: 33.3%;
+      min-height: 100vh;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      transition: opacity 0.4s;
+      background-color: rgba(0, 0, 0, .8);
+      padding: 30px;
+      display: none;
+    }
+
+    .aside_nav a {
+      color: #fff;
+
+    }
+
+    .aside_nav.open {
+      display: block;
+    }
+
+    .close_btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+
+    /* https://css.gg/close-o */
+    .gg-close-o {
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+      transform: scale(var(--ggs, 1));
+      width: 22px;
+      height: 22px;
+      border: 2px solid;
+      border-radius: 40px
+    }
+
+    .gg-close-o::after,
+    .gg-close-o::before {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      background: currentColor;
+      transform: rotate(45deg);
+      border-radius: 5px;
+      top: 8px;
+      left: 3px
+    }
+
+    .gg-close-o::after {
+      transform: rotate(-45deg)
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="main_nav">
+      <router-link to="/unit_a">unit_A</router-link>
+      <router-link to="/unit_b">unit_B</router-link>
+      <router-link to="/unit_c">unit_C</router-link>
+      <router-link to="/unit_d">unit_D</router-link>
+      <a href="#" @click.prevent="toogle_aside_nav_handle">aside nav</a>
+    </div>
+    <router-view></router-view>
+    <div class="aside_nav" :class="{open:isOpen}">
+      <a href="#" class=close_btn @click.prevent="toogle_aside_nav_handle(false)"><i class="gg-close-o"></i></a>
+      <router-link to="/unit_a">unit_A</router-link>
+      <router-link to="/unit_b">unit_B</router-link>
+      <router-link to="/unit_c">unit_C</router-link>
+      <router-link to="/unit_d">unit_D</router-link>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
+    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
+    crossorigin='anonymous'></script>
+  <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+  <script>
+    const Unit_A = { template: '<div>unit_A</div>' }
+    const Unit_B = { template: '<div>unit_B</div>' }
+    const Unit_C = { template: '<div>unit_C</div>' }
+    const Unit_D = { template: '<div>unit_D</div>' }
+    const routes = [
+      { path: '/unit_a', component: Unit_A },
+      { path: '/unit_b', component: Unit_B },
+      { path: '/unit_c', component: Unit_C },
+      { path: '/unit_d', component: Unit_D },
+    ]
+
+    const router = new VueRouter({
+      routes
+    })
+
+    new Vue({
+      router,
+      el: "#app",
+      data() {
+        return {
+          isOpen: false
+        }
+      },
+      computed: {},
+      methods: {
+        toogle_aside_nav_handle(val) {
+          this.isOpen = val
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
