@@ -1,48 +1,67 @@
 {
-  "list": [{
-    "id": 0,
-    "pic_url": "https://www.w3schools.com/w3images/mountains.jpg",
-    "title": "Mountains",
-    "content": "Lorem ipsum dolor.."
-  }, {
-    "id": 1,
-    "pic_url": "https://www.w3schools.com/w3images/lights.jpg",
-    "title": "Lights",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 2,
-    "pic_url": "https://www.w3schools.com/w3images/nature.jpg",
-    "title": "Forest",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 3,
-    "pic_url": "https://www.w3schools.com/w3images/cars1.jpg",
-    "title": "Retro",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 4,
-    "pic_url": "https://www.w3schools.com/w3images/cars2.jpg",
-    "title": "Fast",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 5,
-    "pic_url": "https://www.w3schools.com/w3images/cars3.jpg",
-    "title": "Classic",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 6,
-    "pic_url": "https://www.w3schools.com/w3images/people1.jpg",
-    "title": "Girl",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 7,
-    "pic_url": "https://www.w3schools.com/w3images/people2.jpg",
-    "title": "Man",
-    "content": "Lorem ipsum dolor.."
-  } {
-    "id": 8,
-    "pic_url": "https://www.w3schools.com/w3images/people3.jpg",
-    "title": "Woman",
-    "content": "Lorem ipsum dolor.."
-  }]
+  "list": [
+    {
+      "id": 0,
+      "pic_url": "https://www.w3schools.com/w3images/mountains.jpg",
+      "title": "Mountains",
+      "content": "Lorem ipsum dolor..",
+      "class": "nature"
+    },
+    {
+      "id": 1,
+      "pic_url": "https://www.w3schools.com/w3images/lights.jpg",
+      "title": "Lights",
+      "content": "Lorem ipsum dolor..",
+      "class": "nature"
+    },
+    {
+      "id": 2,
+      "pic_url": "https://www.w3schools.com/w3images/nature.jpg",
+      "title": "Forest",
+      "content": "Lorem ipsum dolor..",
+      "class": "nature"
+    },
+    {
+      "id": 3,
+      "pic_url": "https://www.w3schools.com/w3images/cars1.jpg",
+      "title": "Retro",
+      "content": "Lorem ipsum dolor..",
+      "class": "cars"
+    },
+    {
+      "id": 4,
+      "pic_url": "https://www.w3schools.com/w3images/cars2.jpg",
+      "title": "Fast",
+      "content": "Lorem ipsum dolor..",
+      "class": "cars"
+    },
+    {
+      "id": 5,
+      "pic_url": "https://www.w3schools.com/w3images/cars3.jpg",
+      "title": "Classic",
+      "content": "Lorem ipsum dolor..",
+      "class": "cars"
+    },
+    {
+      "id": 6,
+      "pic_url": "https://www.w3schools.com/w3images/people1.jpg",
+      "title": "Girl",
+      "content": "Lorem ipsum dolor..",
+      "class": "people"
+    },
+    {
+      "id": 7,
+      "pic_url": "https://www.w3schools.com/w3images/people2.jpg",
+      "title": "Man",
+      "content": "Lorem ipsum dolor..",
+      "class": "people"
+    },
+    {
+      "id": 8,
+      "pic_url": "https://www.w3schools.com/w3images/people3.jpg",
+      "title": "Woman",
+      "content": "Lorem ipsum dolor..",
+      "class": "people"
+    }
+  ]
 }

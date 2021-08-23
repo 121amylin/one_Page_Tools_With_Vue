@@ -1,31 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue_dome</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Microsoft JhengHei;
       }
-    })
-  </script>
-</body>
+      ul {
+        padding-left: 0;
+      }
+      li {
+        list-style: none;
+      }
+      img {
+        width: 100%;
+      }
+      a {
+        text-decoration: none;
+      }
+      #app {
+        width: 100%;
+        max-width: 991px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #ddd;
+      }
+      .tab {
+      }
+      .tab li {
+        display: inline-block;
+        margin: 10px;
+      }
+      .tab li a {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #fff;
+        font-weight: 700;
+      }
+      .tab li.active a,
+      .tab li a:hover {
+        color: #e64100;
+      }
+      .content {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .content li {
+        width: calc(33.3% - 20px);
+        margin: 10px;
+        padding: 10px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app" v-show="isload">
+      <div class="tab">
+        <ul>
+          <li
+            v-for="item in get_class"
+            :key="item"
+            :class="[item==show_class?'active':'']"
+          >
+            <a @click.pervent="changeClassHandle(item)" href="#">{{item}}</a>
+          </li>
+        </ul>
+      </div>
+      <ul class="content">
+        <li class="card" v-for="item in filter_class" :key="item.id">
+          <div class="pic">
+            <img :src="item.pic_url" alt="" />
+          </div>
+          <div class="text">
+            <h3>{{item.title}}</h3>
+            <p>{{item.content}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            list: [],
+            isload: false,
+            show_class: "cars",
+          };
+        },
+        computed: {
+          get_class() {
+            let arr = [];
+            this.list.forEach((element) => {
+              arr.push(element.class);
+            });
+            arr = Array.from(new Set(arr));
+            arr.unshift("all");
+            return arr;
+          },
+          filter_class() {
+            let arr = [];
+            if (this.show_class === "all") {
+              arr = this.list;
+            } else {
+              arr = this.list.filter((item) => {
+                return item.class === this.show_class;
+              });
+            }
+            return arr;
+          },
+        },
+        methods: {
+          changeClassHandle(className) {
+            this.show_class = className;
+          },
+        },
+        mounted() {
+          fetch("db.json")
+            .then((res) => {
+              return res.json();
+            })
+            .then((result) => {
+              this.list = JSON.parse(JSON.stringify(result.list))
+            });
+          this.isload = true;
+        },
+      });
+    </script>
+  </body>
 </html>

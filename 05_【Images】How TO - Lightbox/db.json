@@ -1,0 +1,24 @@
+{
+  "list": [
+    {
+      "id": 0,
+      "url": "https://www.w3schools.com/howto/img_nature.jpg",
+      "title": "Nature and sunrise"
+    },
+    {
+      "id": 1,
+      "url": "https://www.w3schools.com/howto/img_snow.jpg",
+      "title": "Snow"
+    },
+    {
+      "id": 2,
+      "url": "https://www.w3schools.com/howto/img_mountains.jpg",
+      "title": "Mountains and fjords"
+    },
+    {
+      "id": 3,
+      "url": "https://www.w3schools.com/howto/img_lights.jpg",
+      "title": "Northern Lights"
+    }
+  ]
+}

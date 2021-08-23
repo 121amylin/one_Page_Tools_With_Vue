@@ -16,7 +16,7 @@
   - white-space: nowrap
 - [VUE中滑鼠滾輪使div左右滾動](https://www.796t.com/article.php?id=184045)
 - [mousewheel](https://caniuse.com/?search=mousewheel)=> firefox以外都支援
-- [DOMMouseScroll]https://caniuse.com/?search=DOMMouseScroll=> firefox支援
+- [DOMMouseScroll](https://caniuse.com/?search=DOMMouseScroll)=> firefox支援
 - [wheel](https://caniuse.com/?search=wheel)=>都支援
 - [deltaY](https://caniuse.com/?search=deltaY)=>都支援
 - [JS滚轮事件(mousewheel/DOMMouseScroll)了解](https://www.zhangxinxu.com/wordpress/2013/04/js-mousewheel-dommousescroll-event/)
@@ -35,7 +35,8 @@
 
 ****
 ### 06_[【Images】How TO - Portfolio Gallery with Filtering](https://www.w3schools.com/howto/howto_js_portfolio_filter.asp)
-
+- w3c示範用className過濾資料
+- [vue.js中內聯樣式style、class三元表達式](https://blog.csdn.net/qq_43258252/article/details/86677256)
 
 ****
 ### 07_[【Images】How TO - Image Zoom](https://www.w3schools.com/howto/howto_js_image_zoom.asp)
