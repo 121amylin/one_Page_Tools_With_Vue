@@ -1,31 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue_dome</title>
+    <style>
+      .flow {
+        list-style: none;
+        padding-left: 0;
       }
-    })
-  </script>
-</body>
+      .item .leave {
+        display: inline-block;
+        width: 60px;
+      }
+      .item .bar {
+        display: inline-block;
+        width: 80%;
+        height: 30px;
+        position: relative;
+        padding: 4px 12px;
+        margin: 10px 0;
+        background-color: #eee;
+        vertical-align: middle;
+      }
+      .item .color_bar {
+        position: absolute;
+        background-color: rgb(68, 103, 255);
+        top: 0;
+        bottom: 0;
+        left: 0;
+      }
+      .item .color_bar span {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        right: 10px;
+        color: #fff;
+      }
+      .item .num {
+        display: inline-block;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app">
+      <h1>{{average}} average based on {{count_list.length}} reviews.</h1>
+      <!-- {{count_obj}} -->
+      <ul class="flow">
+        <li class="item" v-for="item in count_obj">
+          <div class="leave"><p>Leave {{item.class}}</p></div>
+          <div class="bar">
+            <div class="color_bar" :style='{width:item.percentage+"%"}'>
+              <span>{{item.percentage+"%"}}</span>
+            </div>
+          </div>
+          <div class="num">{{item.count}}</div>
+        </li>
+      </ul>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            count_list: [
+              { id: 0, count: 4 },
+              { id: 1, count: 2 },
+              { id: 2, count: 4 },
+              { id: 3, count: 2 },
+              { id: 4, count: 5 },
+              { id: 5, count: 2 },
+              { id: 6, count: 2 },
+              { id: 7, count: 2 },
+              { id: 8, count: 3 },
+              { id: 9, count: 5 },
+              { id: 10, count: 1 },
+              { id: 11, count: 5 },
+              { id: 12, count: 3 },
+              { id: 13, count: 4 },
+            ],
+          };
+        },
+        computed: {
+          average() {
+            let num = 0;
+            this.count_list.forEach((element) => {
+              num += element.count;
+            });
+            return (num / this.count_list.length).toFixed(1);
+          },
+          count_obj() {
+            let soryArr = null;
+            let objArr = [];
+            let classArr = [];
+            let pointer = 0;
+            let per = (100 / this.count_list.length).toFixed(0) * 1;
+            this.count_list.forEach((item) => {
+              if (classArr.indexOf(item.count) == -1) classArr.push(item.count);
+              pointer++;
+            });
+            classArr.forEach((item) => {
+              let temp = {};
+              temp.class = item;
+              temp.count = 0;
+              temp.percentage = 0;
+              objArr.push(temp);
+            });
+            this.count_list.forEach((item) => {
+              for (let i = 0; i < classArr.length; i++) {
+                if (objArr[i].class == item.count) {
+                  objArr[i].count++;
+                  objArr[i].percentage += per;
+                }
+              }
+            });
+            soryArr = objArr.sort((a, b) => {
+              return a.class > b.class ? -1 : 1;
+            });
+            return soryArr;
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
 </html>

@@ -6,24 +6,78 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue_dome</title>
+  <style>
+    /* https://codepen.io/fxm90/pen/yOBWVe */
+    .star {
+      position: relative;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 0.9em;
+      margin-right: 0.9em;
+      margin-bottom: 1.2em;
+      border-right: 0.3em solid transparent;
+      border-bottom: 0.7em solid #fc0;
+      border-left: 0.3em solid transparent;
+      font-size: 24px;
+    }
+
+    .star:before,
+    .star:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 0.6em;
+      left: -1em;
+      border-right: 1em solid transparent;
+      border-bottom: 0.7em solid #fc0;
+      border-left: 1em solid transparent;
+      transform: rotate(-35deg);
+    }
+
+    .star:after {
+      transform: rotate(35deg);
+    }
+
+    .star.lave,
+    .star.lave:before,
+    .star.lave:after {
+      border-bottom-color: #ddd;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
+    <star_count :count="4"></star_count>
+    <star_count :count="99"></star_count>
+    <star_count :count="2"></star_count>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
     crossorigin='anonymous'></script>
   <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
+
+    Vue.component("star_count", {
+      props: ['count'],
+      computed: {
+        full() { return this.count <= 5 ? this.count : 5 },
+        lave() {
+          return this.count <= 5 ? (5 - this.count) : 0
         }
       },
-      computed: {},
-      methods: {
-      }
+      template: `<div>
+        <p>{{count}} / {{lave}}</p>
+          <div class="star" v-for="n in full"></div>
+          <div class="star lave" v-for="n in lave"></div>
+        </div>`
+    })
+
+
+    new Vue({
+      el: "#app"
     })
   </script>
 </body>

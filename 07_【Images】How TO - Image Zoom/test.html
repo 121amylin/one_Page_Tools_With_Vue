@@ -1,0 +1,33 @@
+<!-- 【insertBefore】 -->
+<!-- document.getElementById("myList").insertBefore(newItem,existingItem); -->
+<!-- insertBefore(新元素,舊元素) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="child"></div>
+  </div>
+  <script>
+    let A = document.createElement("div")
+    A.setAttribute("class", "classA")
+    let B = document.createElement("h3")
+    B.setAttribute("class", "classB")
+    let app = document.querySelector("#app")
+    let child = document.querySelector("child")
+    
+    // app.parentElement.insertBefore(A, app)  //.classA + (#app>.child)
+    app.insertBefore(A, child) //#app > ( .child + .classA  )
+  </script>
+</body>
+
+</html>

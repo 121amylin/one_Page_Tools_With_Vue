@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .img-comp-container {
+      position: relative;
+      height: 200px;
+      /*should be the same height as the images*/
+      /*注意圖片高度需一致*/
+    }
+
+    .img-comp-img {
+      position: absolute;
+      width: auto;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .img-comp-img img {
+      display: block;
+      vertical-align: middle;
+    }
+
+    .img-comp-slider {
+      position: absolute;
+      z-index: 9;
+      cursor: ew-resize;
+      /*set the appearance of the slider:*/
+      /*設置拉霸外觀*/
+      width: 40px;
+      height: 40px;
+      background-color: #2196F3;
+      opacity: 0.7;
+      border-radius: 50%;
+    }
+  </style>
+  <script>
+    function initComparisons() {
+      var x, i;
+      /*find all elements with an "overlay" class:*/
+      /*獲取所有覆蓋層的元素，=>畫面上具有"img-comp-overlay"class的元素*/
+      x = document.getElementsByClassName("img-comp-overlay");
+      for (i = 0; i < x.length; i++) {
+        /*once for each "overlay" element:
+        pass the "overlay" element as a parameter when executing the compareImages function:*/
+        /*變例畫面上所有class含有 "img-comp-overlay" 的元素，執行 compareImages 函式*/
+        compareImages(x[i]);
+      }
+      function compareImages(img) {
+        var slider, img, clicked = 0, w, h;
+        /*get the width and height of the img element*/
+        /*獲取元素的高和寬*/
+        w = img.offsetWidth;
+        h = img.offsetHeight;
+
+        /*set the width of the img element to 50%:*/
+        /*設置顯示寬度為百分之五十*/
+        img.style.width = (w / 2) + "px";
+
+        /*create slider:*/
+        /*創建 slider 元素*/
+        slider = document.createElement("DIV");
+        slider.setAttribute("class", "img-comp-slider");
+
+        /*insert slider*/
+        /*安裝 slider 元素到畫面上*/
+        img.parentElement.insertBefore(slider, img);
+
+        /*position the slider in the middle:*/
+        /*設置 slider 顯示為一半的位置*/
+        slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+        slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+
+        /*execute a function when the mouse button is pressed:*/
+        /*監聽mousedown事件*/
+        slider.addEventListener("mousedown", slideReady);
+
+        /*and another function when the mouse button is released:*/
+        /*監聽mouseup事件*/
+        window.addEventListener("mouseup", slideFinish);
+
+        /*or touched (for touch screens:*/
+        /*處理手機touch系列事件*/
+        /*slider.addEventListener("touchstart", slideReady);*/
+        /*監聽touchstart事件*/
+        /*and released (for touch screens:*/
+        window.addEventListener("touchend", slideFinish);
+        function slideReady(e) {
+          /*prevent any other actions that may occur when moving over the image:*/
+          /*阻止預設事件*/
+          e.preventDefault();
+          /*the slider is now clicked and ready to move:*/
+          /*當滑塊是被點擊且滑鼠正在移動的時候，開啟移動開關*/
+          clicked = 1;
+          /*execute a function when the slider is moved:*/
+          /*監聽mousemove事件*/
+          window.addEventListener("mousemove", slideMove);
+          window.addEventListener("touchmove", slideMove);
+        }
+        function slideFinish() {
+          /*the slider is no longer clicked:*/
+          /*當滑塊不再被點擊的時候，關閉移動開關*/
+          clicked = 0;
+        }
+        function slideMove(e) {
+          var pos;
+          /*if the slider is no longer clicked, exit this function:*/
+          /*當滑塊不再被點擊的時候，退出函數*/
+          if (clicked == 0) return false;
+          /*get the cursor's x position:*/
+          /*獲取滑鼠的X座標*/
+          pos = getCursorPos(e)
+          /*prevent the slider from being positioned outside the image:*/
+          /*阻止滑塊起始位置超出圖片範圍*/
+          if (pos < 0) pos = 0;
+          if (pos > w) pos = w;
+          /*execute a function that will resize the overlay image according to the cursor:*/
+          /*執行slide函數*/
+          slide(pos);
+        }
+        function getCursorPos(e) {
+          var a, x = 0;
+          e = (e.changedTouches) ? e.changedTouches[0] : e;
+          /*get the x positions of the image:*/
+          /*獲取圖片X軸位置*/
+          a = img.getBoundingClientRect();
+          /*calculate the cursor's x coordinate, relative to the image:*/
+          /*計算滑鼠與圖片相對位置座標*/
+          x = e.pageX - a.left;
+          /*consider any page scrolling:*/
+          /*當發生頁面卷軸位置改背的時候，重設X值*/
+          x = x - window.pageXOffset;
+          return x;
+        }
+        function slide(x) {
+          /*resize the image:*/
+          img.style.width = x + "px";
+          /*position the slider:*/
+          slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <h1>Compare Two Images</h1>
+
+  <p>Click and slide the blue slider to compare two images:</p>
+
+  <div class="img-comp-container">
+    <div class="img-comp-img">
+      <img src="https://www.w3schools.com/howto/img_snow.jpg" width="300" height="200">
+    </div>
+    <div class="img-comp-img img-comp-overlay">
+      <img src="https://www.w3schools.com/howto/img_forest.jpg" width="300" height="200">
+    </div>
+  </div>
+
+  <script>
+    /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+    initComparisons();
+  </script>
+
+</body>
+
+</html>

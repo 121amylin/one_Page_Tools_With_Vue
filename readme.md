@@ -40,7 +40,9 @@
 
 ****
 ### 07_[【Images】How TO - Image Zoom](https://www.w3schools.com/howto/howto_js_image_zoom.asp)
-
+ - getBoundingClientRect
+ - pageXOffset
+ - XXX.parentElement.insertBefore(新增元素, 固有元素)
 
 ****
 ### 08_[【Images】How TO - Image Magnifier Glass](https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp)
@@ -73,10 +75,13 @@
 ### 19_[【More】How TO - CSS Calendar](https://www.w3schools.com/howto/howto_css_calendar.asp)
 ****
 ### 20_[【More】How TO - Star Rating](https://www.w3schools.com/howto/howto_css_star_rating.asp)
+- [CSS SVG star rating](https://daily-dev-tips.com/posts/css-svg-star-rating-%E2%AD%90%EF%B8%8F/)
+- [Pure CSS Star Shape](https://codepen.io/fxm90/pen/yOBWVe)
 ****
 ### 21_[【More】How TO - User Rating](https://www.w3schools.com/howto/howto_css_user_rating.asp)
 ****
 ### 22_[【More】How TO - Alerts](https://www.w3schools.com/howto/howto_js_alert.asp)
+- [提問：js怎麼動態生成svg](https://juejin.cn/post/6844903698263441421)
 ****
 ### 23_[【More】How TO - Fullscreen](https://www.w3schools.com/howto/howto_js_fullscreen.asp)
 ****
@@ -87,11 +92,11 @@
 ### 26_[【More】How TO - Tree View](https://www.w3schools.com/howto/howto_js_treeview.asp)
 ****
 ### 27_[【More】How TO - Online Offline Detection](https://www.w3schools.com/howto/howto_js_offline_detection.asp)
-navigator.onLine
 ****
 ### 28_[【More】How TO - Redirect to Another Webpage](https://www.w3schools.com/howto/howto_js_redirect_webpage.asp)
 ****
 ### 29_[【More】How TO - CSS Arrows](https://www.w3schools.com/howto/howto_css_arrows.asp)
+- [[Vue] Custom Directives 自定義指令](https://medium.com/itsems-frontend/vue-custom-directives-c991ce456748)
 ****
 ### 30_[【More】How TO - CSS Shapes](https://www.w3schools.com/howto/howto_css_shapes.asp)
 ****

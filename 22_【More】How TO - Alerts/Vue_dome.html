@@ -10,11 +10,72 @@
 
 <body>
   <div id="app">
+    <div v-alert>123</div>
+    <br>
+    <div v-alert>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea in, assumenda iusto explicabo obcaecati
+      sit nihil laboriosam cum neque velit. Natus laborum praesentium porro nostrum eum accusamus ullam magnam
+      voluptates!
+      Earum nobis dignissimos pariatur voluptatem expedita quidem illum. Quae mollitia expedita pariatur animi placeat
+      corporis nam! Excepturi libero, repudiandae accusamus et rem, quia aut minus nam magnam sunt sint sapiente.
+      Perferendis, maxime vel eveniet doloremque distinctio nihil rem a animi, nobis tenetur hic dolores. Consequuntur
+      provident sed ipsam itaque necessitatibus, tempore tenetur beatae iusto quos repellendus. Nihil quam doloremque
+      molestiae?
+      Corporis incidunt id dolorum excepturi possimus totam expedita harum nam consequatur eius neque tempore tenetur
+      earum accusamus rem, qui similique molestias, et nihil itaque laudantium. Ea quaerat architecto distinctio amet.
+      Et repudiandae consectetur quaerat harum, impedit nostrum, voluptatem minus similique eveniet laudantium enim
+      architecto sint exercitationem temporibus laboriosam rerum aliquam hic soluta consequuntur ut? Vel eius
+      necessitatibus culpa numquam facilis?
+      Pariatur eligendi, cupiditate architecto assumenda vitae minus numquam quia et obcaecati dolor fugit est sequi vel
+      iure ducimus incidunt harum aspernatur sit corporis nemo error nam. Omnis temporibus harum officiis?
+      Quidem eveniet iure expedita nihil sed debitis alias dicta quis, quod quibusdam illo voluptates sit id hic animi
+      asperiores earum ab reprehenderit. Iste illum saepe provident dolor, eveniet obcaecati neque?
+      Id accusantium ut officiis quae voluptatibus numquam quibusdam voluptas tempore nam sit rem, laborum enim ducimus
+      neque alias? Itaque repellat perferendis perspiciatis sint eaque earum eius fuga exercitationem tempore vitae.
+      Quas aliquam natus fugiat modi? Tempore debitis placeat nihil ea odio quia ipsum dolorem impedit officia eaque
+      dolor saepe minus enim praesentium autem atque tempora, sint ipsa amet deserunt id.
+      Numquam dignissimos magnam ad laborum. Eos error soluta corrupti maiores architecto dolore impedit eveniet
+      distinctio suscipit, cupiditate, beatae numquam, eaque cumque labore dolorum quaerat esse? Debitis laudantium
+      sapiente sint doloribus.</div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
     crossorigin='anonymous'></script>
   <script>
+    Vue.directive("alert", {
+      inserted(el) {
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('fill', "none");
+        svg.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+        svg.style.width = '24px';
+        svg.style.height = '24px';
+        svg.innerHTML = `<path
+        d = "M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z"
+        fill = "currentColor"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z"
+            fill="currentColor"
+          />`
+        el.appendChild(svg);
+
+        el.style.background = "#ffdede"
+        el.style.padding = "16px 60px 16px 24px"
+        el.style.border = "2px solid #ffa0a0;"
+        el.style.borderRadius = "8px"
+        el.style.position = "relative"
+        svg.style.position = "absolute"
+        svg.style.transform = "translateY(-50%)"
+        svg.style.top = "50%"
+        svg.style.right = "18px"
+        svg.style.cursor = "pointer"
+        svg.addEventListener('click', function () {
+          el.style.display = "none"
+        })
+      }
+    })
     new Vue({
       el: "#app",
       data() {

@@ -5,25 +5,58 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
+  <title>Document</title>
 </head>
 
 <body>
   <div id="app">
+    <p>text<span v-test="{type:'right',size:10,thick:10}"></span></p>
+
+    <br><br>
+
+    <p>text<span v-test="{type:'left',size:5,thick:5}"></span></p>
+
+    <br><br>
+
+    <p>text<span v-test="{type:'up',size:15,thick:30}"></span></p>
+
+    <br><br>
+
+    <p>text<span v-test="{type:'down',size:6,thick:2}"></span></p>
+
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
     crossorigin='anonymous'></script>
   <script>
+
+    Vue.directive("test", {
+      inserted: function (el, value) {
+        const { type, size, thick } = value.value
+        el.style.border = "solid black"
+        el.style.borderWidth = `0  ${thick}px ${thick}px 0`
+        el.style.display = "inline-block"
+        el.style.padding = `${size}px`
+        el.style.margin = `${size}px`
+        el.style.verticalAlign = "middle"
+        switch (type) {
+          case "right":
+            el.style.transform = "rotate(-45deg)";
+            break;
+          case "left":
+            el.style.transform = "rotate(135deg)"
+            break
+          case "up":
+            el.style.transform = "rotate(-135deg)"
+            break
+          case "down":
+            el.style.transform = "rotate(45deg)"
+        }
+
+      }
+    })
     new Vue({
       el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
-      }
     })
   </script>
 </body>
