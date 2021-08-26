@@ -6,10 +6,115 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue_dome</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    html {
+      font: 62.5%/1 "微軟正黑體", Microsoft JhengHei, Arial, Helvetica, sans-serif;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    #app {
+      width: 991px;
+      margin: auto;
+      padding: 30px;
+      background-color: #e9e9e9;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+    }
+
+    .panel_header {
+      position: relative;
+      z-index: 1;
+      background-color: rgb(163, 192, 255);
+    }
+
+    .panel_header a {
+      display: block;
+      position: relative;
+      padding: 16px;
+    }
+
+    .panel_header .icon {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+    }
+
+    .icon::after,
+    .icon::before {
+      content: '';
+      display: block;
+      position: absolute;
+      background-color: #000;
+    }
+
+    .icon::after {
+      width: 16px;
+      height: 2px;
+      top: 7px;
+    }
+
+    .icon::before {
+      width: 2px;
+      height: 16px;
+      left: 7px;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+
+    .panel_item {
+      padding: 10px 0;
+    }
+
+    .panel_body {
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.4s;
+      transition-delay: 0.2s;
+      opacity: 0;
+      padding: 16px;
+      background-color: #fff;
+    }
+
+    .active .panel_body {
+      height: auto;
+      opacity: 1;
+    }
+
+    .active .icon::before {
+      opacity: 0;
+
+    }
+  </style>
+
 </head>
 
 <body>
   <div id="app">
+    <folding_panel :pdata="list"></folding_panel>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
@@ -19,10 +124,52 @@
       el: "#app",
       data() {
         return {
+          list: [
+            {
+              title: "item1",
+              content: "content1"
+            },
+            {
+              title: "item2",
+              content: "content2"
+            }, {
+              title: "item3",
+              content: "content3"
+            }
+          ]
         }
       },
-      computed: {},
-      methods: {
+      components: {
+        folding_panel: {
+          props: {
+            pdata: {
+              type: Array,
+              required: true
+            }
+          },
+          data() {
+            return {
+              nowShow: 0
+            }
+          },
+          template: `
+            <div class="panel_group">
+              <div class="panel_item" v-for="(item,index) in pdata" :class="[index===nowShow?'active':'']">
+                <div class="panel_header" >
+                  <h3><a href="#" @click.prevent="change_show_item_handle(index)">{{item.title}}<i class="icon"></i></a></h3>
+                </div>
+                <div class="panel_body">
+                  <p>{{item.content}}</p>
+                </div>
+              </div>
+            </div>
+          `,
+          methods: {
+            change_show_item_handle(showItem) {
+              this.nowShow = showItem
+            }
+          }
+        }
       }
     })
   </script>

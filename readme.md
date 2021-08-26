@@ -65,8 +65,14 @@
 ### 14_[【More】How TO - Scroll Indicator](https://www.w3schools.com/howto/howto_js_scroll_indicator.asp)
 ****
 ### 15_[【More】How TO - JavaScript Progress Bar](https://www.w3schools.com/howto/howto_js_progressbar.asp)
+- [監聽器( watch )](https://peterhpchen.github.io/VuejsQuest/basic/08_Watcher.html#%E4%BB%8B%E7%B4%B9)
+
 ****
 ### 16_[【More】How TO - Tooltip](https://www.w3schools.com/howto/howto_css_tooltip.asp)
+- 指令v-tip
+- v-tip="['dir','text']"
+- dir參數：top/left/bottom/reight
+- text參數:tip出現的字符串
 ****
 ### 17_[【More】How TO - Display an Element on Hover](https://www.w3schools.com/howto/howto_css_display_element_hover.asp)
 ****
@@ -88,6 +94,7 @@
 ### 24_[【More】How TO - Toggle Like and Dislike](https://www.w3schools.com/howto/howto_js_toggle_like.asp)
 ****
 ### 25_[【More】How TO - Toggle Dark Mode](https://www.w3schools.com/howto/howto_js_toggle_dark_mode.asp)
+- [text-size-adjust](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-size-adjust)
 ****
 ### 26_[【More】How TO - Tree View](https://www.w3schools.com/howto/howto_js_treeview.asp)
 ****
@@ -103,13 +110,24 @@
 ### 31_[【More】How TO - Create a Draggable HTML Element](https://www.w3schools.com/howto/howto_js_draggable.asp)
 ****
 ### 32_[【More】How TO - Create a Syntax Highlighter](https://www.w3schools.com/howto/howto_syntax_highlight.asp)
+- 看看就好
 ****
 ### 33_[【More】How TO - Get Iframe Elements](https://www.w3schools.com/howto/howto_js_element_iframe.asp)
 ****
 ### 34_[【Converters】How TO - Weight Converter](https://www.w3schools.com/howto/howto_js_weight_converter.asp)
+- 【重量換算】
+  - 1 ounce 盎司 =28.35 grams 克
+  - 1 pound 磅 =16 ounces 盎司 = 453.6 grams 克
+  - 1 stone 英石 =14 pounds 磅 = 224 ounces 盎司 =6,350.4 grams 克
+
+
 ****
 ### 35_[【Converters】How TO - Temperature Converter](https://www.w3schools.com/howto/howto_js_temperature_converter.asp)
+- https://www.ifreesite.com/calculatortool/temperature.htm
+
 ****
 ### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
+- https://www.digikey.tw/zh/resources/conversion-calculators/conversion-calculator-length
+- https://www.convertworld.com/zh-hant/length/
 ****
 ### 37_[【Converters】How TO - Speed Converter](https://www.w3schools.com/howto/howto_js_speed_converter.asp)

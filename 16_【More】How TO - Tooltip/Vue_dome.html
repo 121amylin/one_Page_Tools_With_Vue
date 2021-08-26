@@ -6,10 +6,119 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue_dome</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #eee;
+    }
+
+    #app {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    #app .item {
+      display: inline-block;
+      min-width: 80px;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-radius: 6px;
+      margin: 10px;
+      text-align: center;
+    }
+
+    /* ------------ */
+    .tip {
+      position: relative;
+    }
+
+    .tip:hover .tip_text {
+      opacity: 1;
+    }
+
+    .tip .tip_text {
+      position: absolute;
+      padding: 8px 16px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      transform: translate(-50%, -50%);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .tip .tip_text.top {
+      top: -70%;
+      left: 50%;
+    }
+
+    .tip .tip_text.bottom {
+      top: 170%;
+      left: 50%;
+    }
+
+    .tip .tip_text.right {
+      left: 160%;
+      top: 50%;
+    }
+
+    .tip .tip_text.left {
+      left: -60%;
+      top: 50%;
+    }
+
+    .tip .tip_text::after {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-style: solid;
+    }
+
+    .tip .tip_text.top::after {
+      border-width: 5px 5px 0 5px;
+      border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+      transform: translateX(-50%);
+      left: 50%;
+      bottom: -5px;
+    }
+
+    .tip .tip_text.bottom::after {
+      border-width: 0 5px 5px 5px;
+      border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+      transform: translateX(-50%);
+      left: 50%;
+      top: -5px;
+    }
+
+    .tip .tip_text.right::after {
+      border-width: 5px 5px 5px 0;
+      border-color: transparent rgba(0, 0, 0, 0.7) transparent transparent;
+      transform: translateY(-50%);
+      top: 50%;
+      left: -5px;
+    }
+
+    .tip .tip_text.left::after {
+      border-width: 5px 0 5px 5px;
+      border-color: transparent transparent transparent rgba(0, 0, 0, 0.7);
+      transform: translateY(-50%);
+      top: 50%;
+      right: -5px;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
+    <div class="item" v-tip="['top','Top']">Top</div>
+    <div class="item" v-tip="['right','Right']">Right</div>
+    <div class="item" v-tip="['bottom','Bottom']">Bottom</div>
+    <div class="item" v-tip="['left','Left']"> Left</div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
@@ -17,12 +126,17 @@
   <script>
     new Vue({
       el: "#app",
-      data() {
-        return {
+      directives: {
+        tip: {
+          inserted(el, value) {
+            const [dir, test] = value.value
+            const tip = document.createElement('div')
+            tip.classList.add('tip_text', dir)
+            tip.textContent = test
+            el.classList.add('tip')
+            el.append(tip)
+          }
         }
-      },
-      computed: {},
-      methods: {
       }
     })
   </script>

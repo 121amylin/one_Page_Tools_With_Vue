@@ -6,10 +6,77 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue_dome</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font: 62.5%/1 "微軟正黑體", Microsoft JhengHei, Arial, Helvetica, sans-serif;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    button {
+      padding: 4px 12px;
+    }
+
+    #app {
+      max-width: 991px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    #app.font-size-s * {
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+
+    #app.font-size-m * {
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+
+    #app.font-size-l * {
+      font-size: 2rem;
+      line-height: 1.75;
+    }
+
+    #app.dark_mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .btn_box {
+      margin-bottom: 16px;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" :class="[fontSize,{dark_mode:isDark_mode}]">
+    <div class="btn_box">
+      <button @click="toggle_dark_mode_handle">深色模式</button>
+      <button @click="change_font_size_handle('font-size-l')">大型文字</button>
+      <button @click="change_font_size_handle('font-size-m')">中型文字</button>
+      <button @click="change_font_size_handle('font-size-s')">小型文字</button>
+    </div>
+
+
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo ducimus odio corrupti unde dolores
+      eveniet saepe dolorum molestiae quo, excepturi adipisci aliquam commodi? Expedita assumenda officia sit quia esse.
+    </p>
+
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
@@ -19,10 +86,18 @@
       el: "#app",
       data() {
         return {
+          isDark_mode: true,
+          fontSize: "font-size-m"
         }
       },
       computed: {},
       methods: {
+        toggle_dark_mode_handle() {
+          this.isDark_mode = !this.isDark_mode
+        },
+        change_font_size_handle(size) {
+          this.fontSize = size
+        }
       }
     })
   </script>

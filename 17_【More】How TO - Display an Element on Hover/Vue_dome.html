@@ -6,15 +6,63 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue_dome</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "微軟正黑體", Microsoft JhengHei, Arial, Helvetica, sans-serif;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 991px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    .prompt_item {
+      position: relative;
+      padding-bottom: 24px;
+      margin-bottom: 14px;
+    }
+
+    .prompt_item:hover .prompt {
+      opacity: 1;
+    }
+
+    .prompt_item .prompt {
+      /* position: absolute; */
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: brown;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
+    <prompt_text text="第一種：獨立的 QA 部門" prompt="組織上他會與 R&D 平行，直接面對產品長、總經理、CEO，甚至有 CQO, Chief Quality Officer  的層級。">
+    </prompt_text>
+    <prompt_text text="第二種：掛在 R&D 底下的 QA" prompt="通常是以技術導向的。這類的 QA 要懂技術，會寫 Code，懂得自動化工具。"></prompt_text>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
     crossorigin='anonymous'></script>
   <script>
+    Vue.component("prompt_text", {
+      template: `<div class="prompt_item"><p>{{text}}</p><p class="prompt">{{prompt}}</p></div>`,
+      props: {
+        text: {
+          type: String,
+          required: true
+        },
+        prompt: {
+          type: String,
+          required: true
+        }
+      }
+    })
     new Vue({
       el: "#app",
       data() {
