@@ -1,10 +1,7 @@
-★ 
-### 24_[【More】How TO - Toggle Like and Dislike](https://www.w3schools.com/howto/howto_js_toggle_like.asp)
-### 10_[【Forms】How TO - Login Form](https://www.w3schools.com/howto/howto_css_login_form.asp)
-### 23_[【More】How TO - Fullscreen](https://www.w3schools.com/howto/howto_js_fullscreen.asp)
-### 27_[【More】How TO - Online Offline Detection](https://www.w3schools.com/howto/howto_js_offline_detection.asp)
-### 28_[【More】How TO - Redirect to Another Webpage](https://www.w3schools.com/howto/howto_js_redirect_webpage.asp)
-### 33_[【More】How TO - Get Iframe Elements](https://www.w3schools.com/howto/howto_js_element_iframe.asp)
+★★★★
+### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
+### 37_[【Converters】How TO - Speed Converter](https://www.w3schools.com/howto/howto_js_speed_converter.asp)
+
 
 
 
@@ -13,14 +10,6 @@
 ### 13_[【More】How To Create a Fullscreen Video](https://www.w3schools.com/howto/howto_css_fullscreen_video.asp)
 ### 14_[【More】How TO - Scroll Indicator](https://www.w3schools.com/howto/howto_js_scroll_indicator.asp)
 
-
-
-****
-★★★★
-### 34_[【Converters】How TO - Weight Converter](https://www.w3schools.com/howto/howto_js_weight_converter.asp)
-### 35_[【Converters】How TO - Temperature Converter](https://www.w3schools.com/howto/howto_js_temperature_converter.asp)
-### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
-### 37_[【Converters】How TO - Speed Converter](https://www.w3schools.com/howto/howto_js_speed_converter.asp)
 
 
 

@@ -10,6 +10,10 @@
 
 <body>
   <div id="app">
+    <input type="text" name="grams" id="grams" v-model.number="base" placeholder="請輸入公克">
+    <p>{{base}} 公克等於 {{get_ounce}} 盎司</p>
+    <p>{{base}} 公克等於 {{get_pound}} 磅</p>
+
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
@@ -19,12 +23,25 @@
       el: "#app",
       data() {
         return {
+          base: 1
         }
       },
-      computed: {},
-      methods: {
-      }
+      computed: {
+        get_grams() {
+          return this.base * 1
+        },
+        get_pound() {
+          return this.base * 0.0022
+        },
+        get_ounce() {
+          return this.base * 0.035
+        }
+      },
     })
+
+  // - 1 ounce 盎司 =28.35 grams 克
+  // - 1 pound 磅 =16 ounces 盎司 = 453.6 grams 克
+  // - 1 stone 英石 =14 pounds 磅 = 224 ounces 盎司 =6,350.4 grams 克
   </script>
 </body>
 

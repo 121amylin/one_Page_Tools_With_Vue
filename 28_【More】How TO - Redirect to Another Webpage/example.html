@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="hrefFn()">href</button>
+  <button onclick="replaceFn()">replace</button>
+  <script>
+
+    // 【頁面直接跳轉兩種都不會有歷史紀錄】
+    // Simulate a mouse click:
+    // window.location.href = "http://www.w3schools.com";
+
+    // Simulate an HTTP redirect:
+    // window.location.replace("http://www.w3schools.com");
+
+     // 【按鈕點擊 "window.location.href"有歷史紀錄；"window.location.replace"沒有歷史紀錄】
+    function hrefFn() {
+      window.location.href = "http://www.w3schools.com";
+    }
+    function replaceFn() {
+      window.location.replace("http://www.w3schools.com");
+    }
+  </script>
+</body>
+
+</html>

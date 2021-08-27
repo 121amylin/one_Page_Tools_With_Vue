@@ -90,6 +90,15 @@
 - [提問：js怎麼動態生成svg](https://juejin.cn/post/6844903698263441421)
 ****
 ### 23_[【More】How TO - Fullscreen](https://www.w3schools.com/howto/howto_js_fullscreen.asp)
+- [Element.requestFullscreen() 方法用於發出異步請求使元素進入全屏模式。](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/requestFullScreen)
+- /* Safari */
+- elem.webkitRequestFullscreen()
+- /* IE11 */
+- elem.msRequestFullscreen();
+#### 【應用】
+- [使用JavaScript全屏API全屏顯示你的元素](https://zhuanlan.zhihu.com/p/29178131)
+- [Fullscreen API 全屏顯示網頁](https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/28940/)
+- [requestFullscreen各種瀏覽器全屏模式的兼容方法記錄和在TV項目的應用](https://blog.csdn.net/qq_26604017/article/details/103123532)
 ****
 ### 24_[【More】How TO - Toggle Like and Dislike](https://www.w3schools.com/howto/howto_js_toggle_like.asp)
 ****
@@ -99,8 +108,42 @@
 ### 26_[【More】How TO - Tree View](https://www.w3schools.com/howto/howto_js_treeview.asp)
 ****
 ### 27_[【More】How TO - Online Offline Detection](https://www.w3schools.com/howto/howto_js_offline_detection.asp)
+- [Navigator onLine 属性](https://www.runoob.com/jsref/prop-nav-online.html)
+- [Computed property not updated with navigator.onLine, in Vue.js](https://stackoverflow.com/questions/34532195/computed-property-not-updated-with-navigator-online-in-vue-js)
+```javascript
+    data: {
+      onLine: navigator.onLine // initial status
+    }
+```
 ****
 ### 28_[【More】How TO - Redirect to Another Webpage](https://www.w3schools.com/howto/howto_js_redirect_webpage.asp)
+- 沒有Vue dome
+- 有幾種方法可以使用 JavaScript 重定向到另一個網頁。最受歡迎的是location.href和location.replace:
+```HTML
+<body>
+  <button onclick="hrefFn()">href</button>
+  <button onclick="replaceFn()">replace</button>
+  <script>
+
+    // 【頁面直接跳轉兩種都不會有歷史紀錄】
+    // Simulate a mouse click:
+    // window.location.href = "http://www.w3schools.com";
+
+    // Simulate an HTTP redirect:
+    // window.location.replace("http://www.w3schools.com");
+
+     // 【按鈕點擊 "window.location.href"有歷史紀錄；"window.location.replace"沒有歷史紀錄】
+    function hrefFn() {
+      window.location.href = "http://www.w3schools.com";
+    }
+    function replaceFn() {
+      window.location.replace("http://www.w3schools.com");
+    }
+  </script>
+</body>
+
+```
+- 注意： href 和replace 的區別在於replace()從文檔歷史記錄中刪除當前文檔的URL，這意味著無法使用“後退”按鈕導航回原始文檔。
 ****
 ### 29_[【More】How TO - CSS Arrows](https://www.w3schools.com/howto/howto_css_arrows.asp)
 - [[Vue] Custom Directives 自定義指令](https://medium.com/itsems-frontend/vue-custom-directives-c991ce456748)
@@ -113,8 +156,36 @@
 - 看看就好
 ****
 ### 33_[【More】How TO - Get Iframe Elements](https://www.w3schools.com/howto/howto_js_element_iframe.asp)
+- 沒有Vue dome
+- [HTMLIFrameElement.contentWindow](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLIFrameElement/contentWindow)
+- [contentWindow 相容性](https://caniuse.com/?search=contentWindow)
+- [HTML DOM IFrame 对象_W3C](https://www.w3school.com.cn/jsref/dom_obj_frame.asp)
+- [iFrame 是否能任意地嵌入任何網頁](https://dotblogs.com.tw/AceLee/2018/06/29/185312)
+- [防止網頁被別人的iframe嵌套](https://kknews.cc/zh-tw/code/emypamy.html)
+- 範例測試結果：要點擊事件觸發才能生效，網頁載入完成直接執行程式碼無效。有效代碼如下：
+```javascript
+<body>
+  <iframe id="myFrame" src="iframe.html"></iframe>
+  <button onclick="myFunction()">123</button>
+  <script>
+    function myFunction() {
+      let iframe = document.querySelector('#myFrame')
+      let elem = iframe.contentWindow.document.querySelector("h1")
+      elem.style.display = "none";
+    }
+  </script>
+</body>
+
+```
+
+
 ****
 ### 34_[【Converters】How TO - Weight Converter](https://www.w3schools.com/howto/howto_js_weight_converter.asp)
+- 如果沒有添加.number修飾符，計算結果會返回NaN
+```javascript
+<input type="text" name="grams" id="grams" v-model.number="base" placeholder="請輸入公克">
+```
+- [表單修飾符](https://cn.vuejs.org/v2/guide/forms.html#number)
 - 【重量換算】
   - 1 ounce 盎司 =28.35 grams 克
   - 1 pound 磅 =16 ounces 盎司 = 453.6 grams 克
@@ -123,7 +194,11 @@
 
 ****
 ### 35_[【Converters】How TO - Temperature Converter](https://www.w3schools.com/howto/howto_js_temperature_converter.asp)
-- https://www.ifreesite.com/calculatortool/temperature.htm
+- [溫度換算](https://www.ifreesite.com/calculatortool/temperature.htm)
+- [input事件](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/input_event)
+- [change事件](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/change_event)
+*change 事件不是每次元素的 value 改變時觸發
+- [Javascript刷新頁面的幾種方法](https://ithelp.ithome.com.tw/articles/10190061)
 
 ****
 ### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
