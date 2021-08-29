@@ -1,31 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue_dome</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
-      }
-    })
-  </script>
-</body>
-
+  <body>
+    <div id="app">
+      <label for="Meters">Meters / 米</label>
+      <input id="Meters" type="text" v-model="get_Meters" />
+      <br />
+      <label for="cm">cm / 厘米</label>
+      <input id="cm" type="text" v-model="get_cm" />
+      <br />
+      <label for="Kilometers">Kilometers / 公里</label>
+      <input id="Kilometers" type="text" v-model="get_Kilometers" />
+      <br />
+      <label for="Inches">Inches / 英寸</label>
+      <input id="Inches" type="text" v-model="get_Inches" />
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            base: 1,
+          };
+        },
+        computed: {
+          get_Meters: {
+            get: function () {
+              return this.base;
+            },
+            set: function (value) {
+              this.base = value;
+            },
+          },
+          get_cm: {
+            get: function () {
+              return (this.base * 100).toFixed(2);
+            },
+            set: function (value) {
+              this.base = (value / 100).toFixed(2);
+            },
+          },
+          get_Kilometers: {
+            get: function () {
+              return (this.base * 0.001).toFixed(2);
+            },
+            set: function (value) {
+              this.base = (value / 0.001).toFixed(2);
+            },
+          },
+          get_Inches: {
+            get: function () {
+              return (this.base * 39.37).toFixed(2);
+            },
+            set: function (value) {
+              this.base = (value / 39.37).toFixed(2);
+            },
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

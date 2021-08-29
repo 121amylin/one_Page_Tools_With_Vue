@@ -1,11 +1,4 @@
-★★★★
-### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
-### 37_[【Converters】How TO - Speed Converter](https://www.w3schools.com/howto/howto_js_speed_converter.asp)
 
-
-
-
-****
 ★★★
 ### 13_[【More】How To Create a Fullscreen Video](https://www.w3schools.com/howto/howto_css_fullscreen_video.asp)
 ### 14_[【More】How TO - Scroll Indicator](https://www.w3schools.com/howto/howto_js_scroll_indicator.asp)
