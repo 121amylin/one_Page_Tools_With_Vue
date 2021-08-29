@@ -1,12 +1,4 @@
 
-★★★
-### 13_[【More】How To Create a Fullscreen Video](https://www.w3schools.com/howto/howto_css_fullscreen_video.asp)
-### 14_[【More】How TO - Scroll Indicator](https://www.w3schools.com/howto/howto_js_scroll_indicator.asp)
-
-
-
-
-****
 ★★★★★
 ### 07_[【Images】How TO - Image Zoom](https://www.w3schools.com/howto/howto_js_image_zoom.asp)
 ### 08_[【Images】How TO - Image Magnifier Glass](https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp)

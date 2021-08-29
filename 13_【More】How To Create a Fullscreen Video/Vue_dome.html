@@ -1,31 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue_dome</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
       }
-    })
-  </script>
-</body>
+      #app {
+        position: relative;
+      }
+      video {
+        width: 100%;
+        cursor: pointer;
+      }
+      .content {
+        position: absolute;
+        width: 100%;
+        padding: 40px 60px;
+        bottom: 0;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      .content h1 {
+        font-size: 48px;
+        margin-bottom: 12px;
+      }
+      .content p {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      #myBtn {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        box-shadow: none;
+        background-color: rgb(230, 0, 0);
+        color: #fff;
+        cursor: pointer;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app">
+      <video autoplay muted loop id="myVideo" ref="video" @click="playHandle">
+        <source :src="videoUrl" type="video/mp4" />
+      </video>
+      <div class="content">
+        <h1>Heading</h1>
+        <p>Lorem ipsum...</p>
+        <button id="myBtn" @click="playHandle">{{get_brn_text}}</button>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            videoUrl: "https://www.w3schools.com/howto/rain.mp4",
+            isPlay: true,
+          };
+        },
+        computed: {
+          get_brn_text() {
+            return this.isPlay ? "Pause" : "play";
+          },
+        },
+        methods: {
+          playHandle() {
+            console.log(this.$refs.video);
+            this.isPlay = !this.isPlay;
+            this.isPlay ? this.$refs.video.play() : this.$refs.video.pause();
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

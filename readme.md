@@ -63,6 +63,7 @@
 ### 13_[【More】How To Create a Fullscreen Video](https://www.w3schools.com/howto/howto_css_fullscreen_video.asp)
 ****
 ### 14_[【More】How TO - Scroll Indicator](https://www.w3schools.com/howto/howto_js_scroll_indicator.asp)
+- 不一定所有的資料、涵式都要進vue，有些控制權遇整的葉面的sctoll事件放在vue外面操作還比較方便，並且也沒有需要和vue內部資連動。
 ****
 ### 15_[【More】How TO - JavaScript Progress Bar](https://www.w3schools.com/howto/howto_js_progressbar.asp)
 - [監聽器( watch )](https://peterhpchen.github.io/VuejsQuest/basic/08_Watcher.html#%E4%BB%8B%E7%B4%B9)
