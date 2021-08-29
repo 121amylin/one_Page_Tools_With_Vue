@@ -66,6 +66,11 @@
 ****
 ### 15_[【More】How TO - JavaScript Progress Bar](https://www.w3schools.com/howto/howto_js_progressbar.asp)
 - [監聽器( watch )](https://peterhpchen.github.io/VuejsQuest/basic/08_Watcher.html#%E4%BB%8B%E7%B4%B9)
+- 【watch VS computed】
+  - computed = >資料產生 / 觸發資料
+  - watch => 資料產生 / 觸發行為 (連動型的function)
+  - [watch使用時機](https://youtu.be/3wvoDxZq52w?list=PLEfh-m_KG4dapPjoPvWX0c8JCK6-mIvGr&t=5240)
+  - [非同步的時候要用watch](https://youtu.be/3wvoDxZq52w?list=PLEfh-m_KG4dapPjoPvWX0c8JCK6-mIvGr&t=7296)、[官網範例](https://cn.vuejs.org/v2/guide/computed.html#%E4%BE%A6%E5%90%AC%E5%99%A8)
 
 ****
 ### 16_[【More】How TO - Tooltip](https://www.w3schools.com/howto/howto_css_tooltip.asp)
@@ -199,7 +204,10 @@
 - [change事件](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/change_event)
 *change 事件不是每次元素的 value 改變時觸發
 - [Javascript刷新頁面的幾種方法](https://ithelp.ithome.com.tw/articles/10190061)
-
+- [物件型計算屬性 computed](https://youtu.be/3wvoDxZq52w?list=PLEfh-m_KG4dapPjoPvWX0c8JCK6-mIvGr&t=5676)
+- 【computed物件型和function型】
+  - function型不能寫入
+  - 物件型，進可攻退可守=>推薦
 ****
 ### 36_[【Converters】How TO - Length Converter](https://www.w3schools.com/howto/howto_js_length_converter.asp)
 - https://www.digikey.tw/zh/resources/conversion-calculators/conversion-calculator-length
