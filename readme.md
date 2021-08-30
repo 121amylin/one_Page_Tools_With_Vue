@@ -88,6 +88,7 @@
 ****
 ### 19_[【More】How TO - CSS Calendar](https://www.w3schools.com/howto/howto_css_calendar.asp)
 - [Vue 元件（component）教程之實現精美的日曆方法示例](https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/219553/)、[DOME](https://zhangkunusergit.github.io/vue-component/dist/datePicker.html)
+- [[偷米騎巴哥]從0開始自幹萬年曆](https://www.youtube.com/watch?v=O2k4K-hRKf4)
 ****
 ### 20_[【More】How TO - Star Rating](https://www.w3schools.com/howto/howto_css_star_rating.asp)
 - [CSS SVG star rating](https://daily-dev-tips.com/posts/css-svg-star-rating-%E2%AD%90%EF%B8%8F/)
