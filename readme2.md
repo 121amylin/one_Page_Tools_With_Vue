@@ -1,7 +1,3 @@
-★★★
-### 11_[【Filters】How TO - Filter/Search List](https://www.w3schools.com/howto/howto_js_filter_lists.asp)
-### 12_[【Filters】How TO - Sort a List](https://www.w3schools.com/howto/howto_js_sort_list.asp)
-
 
 ★★★★
 ### 07_[【Images】How TO - Image Zoom](https://www.w3schools.com/howto/howto_js_image_zoom.asp)

@@ -57,8 +57,10 @@
 
 ****
 ### 11_[【Filters】How TO - Filter/Search List](https://www.w3schools.com/howto/howto_js_filter_lists.asp)
+- 包含字串includes、indexOf
 ****
 ### 12_[【Filters】How TO - Sort a List](https://www.w3schools.com/howto/howto_js_sort_list.asp)
+- 可以用sort()就好了~不用跑迴圈
 ****
 ### 13_[【More】How To Create a Fullscreen Video](https://www.w3schools.com/howto/howto_css_fullscreen_video.asp)
 ****
@@ -113,8 +115,10 @@
 - [text-size-adjust](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-size-adjust)
 ****
 ### 26_[【More】How TO - Tree View](https://www.w3schools.com/howto/howto_js_treeview.asp)
+- 組件遞規
 - [树形视图 Example](https://cn.vuejs.org/v2/examples/tree-view.html)
 - [DOME](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-tree-view?from-embed=&file=/index.html:1145-1155)
+- [使用 Vue Recursive Component 實現樹狀菜單](https://medium.com/@paulyang1234/%E4%BD%BF%E7%94%A8-vue-recursive-component-%E5%AF%A6%E7%8F%BE%E6%A8%B9%E7%8B%80%E8%8F%9C%E5%96%AE-f1128e566cba)
 ****
 ### 27_[【More】How TO - Online Offline Detection](https://www.w3schools.com/howto/howto_js_offline_detection.asp)
 - [Navigator onLine 属性](https://www.runoob.com/jsref/prop-nav-online.html)
