@@ -10,46 +10,62 @@
 
 <body>
   <ul id="app">
-    <list :pdate="treeData"></list>
+      <tree-item
+        class="item"
+        :item="treeData"
+      ></tree-item>
+
+
   </ul>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
     integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
     crossorigin='anonymous'></script>
+
   <script>
-    Vue.component("list", {
-      props: ["pdate"],
-      template: `<li>
-        <div @click="toggleShow">{{pdate.name}}
-          <span v-if="havaChild">{{isShow?'-':'+'}}</span>
-          </div>
-        <ul v-if="havaChild" v-show="isShow">
-          <list v-for="(item,index) in pdate.children"
-          :key="index"
-          :pdate="item"
-          ></list>
+    Vue.component("tree-item", {
+      template: `
+      <li>
+        <div
+          @click="toggle">
+          {{ item.name }}
+          <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+        </div>
+        <ul v-show="isOpen" v-if="isFolder">
+          <tree-item
+            v-for="(child, index) in item.children"
+            :key="index"
+            :item="child"
+          ></tree-item>
         </ul>
-        </li>`,
-      data() {
+      </li>
+      `,
+      props: {
+        item: Object
+      },
+      data: function () {
         return {
-          isShow: false
-        }
+          isOpen: false
+        };
       },
       computed: {
-        havaChild() {
-          return this.pdate.children && this.pdate.children.length
+        isFolder: function () {
+          return this.item.children && this.item.children.length;
         }
       },
       methods: {
-        toggleShow() {
-          this.isShow = !this.isShow
+        toggle: function () {
+          if (this.isFolder) {
+            this.isOpen = !this.isOpen;
+          }
         }
       }
-    })
+    });
+
     new Vue({
       el: "#app",
       data() {
         return {
-          treeData: {
+          treeData : {
             name: "My Tree",
             children: [
               { name: "hello" },
@@ -72,9 +88,6 @@
             ]
           }
         }
-      },
-      computed: {},
-      methods: {
       }
     })
   </script>

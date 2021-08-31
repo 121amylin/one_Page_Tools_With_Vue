@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 50px;
+      height: 50px;
+      background-color: #ccc;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+    let box = document.querySelector('.box')
+    let isDrag = false
+    let startX = 0
+    let startY = 0
+    window.addEventListener("mouseover", function (e) {
+      if (isDrag) {
+        box.style.left = e.clientX + "px"
+        box.style.top = e.clientY + "px"
+      }
+      console.log(e.clientX)
+    })
+    box.addEventListener("mousedown", function (e) {
+      isDrag = true
+      startX = e.clientX
+      startY = e.clientY
+      console.log(isDrag)
+    })
+    box.addEventListener("mouseup", function () {
+      isDrag = false
+      startX = 0
+      startY = 0
+      console.log(isDrag)
+    }
+
+    )
+  </script>
+</body>
+
+</html>
