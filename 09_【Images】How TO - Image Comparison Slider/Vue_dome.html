@@ -1,31 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Comparison Slider</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+    <style>
+      .effect_box {
+        position: relative;
+        overflow: hidden;
       }
-    })
-  </script>
-</body>
 
+      .pre_pic {
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+      }
+
+      img {
+        user-select: none;
+      }
+
+      .bar {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ddf376;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        z-index: 10;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div
+        class="effect_box"
+        @mousemove="changeWidthHandle($event)"
+        :style="{width:allwidth+'px'}"
+        @mouseleave="toggleChangeWidthHandle(false)"
+      >
+        <div
+          class="bar"
+          :style="{left:showArea+'%'}"
+          @mousedown="toggleChangeWidthHandle(true)"
+          @mouseup="toggleChangeWidthHandle(false)"
+        ></div>
+        <div class="pic_item back_pic">
+          <img :src="backPicUrl" alt="" :style="{width:allwidth+'px'}" />
+        </div>
+        <div class="pic_item pre_pic" :style="{width:showArea+'%'}">
+          <img :src="prePicUrl" alt="" :style="{width:allwidth+'px'}" />
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            prePicUrl: "https://www.w3schools.com/howto/img_snow.jpg",
+            backPicUrl: "https://www.w3schools.com/howto/img_forest.jpg",
+            isChanging: false,
+            nowPos: 200,
+            allwidth: 400,
+          };
+        },
+        computed: {
+          showArea() {
+            return (this.nowPos / this.allwidth) * 100;
+          },
+        },
+        methods: {
+          changeWidthHandle($event) {
+            if (this.isChanging) {
+              this.nowPos = $event.clientX;
+              if (this.nowPos > this.allwidth - 20) {
+                this.nowPos = this.allwidth;
+              }
+              if (this.nowPos < 20) {
+                this.nowPos = 0;
+              }
+            }
+          },
+          toggleChangeWidthHandle(props) {
+            console.log(props);
+            this.isChanging = props;
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
+
+<!-- DOME -->
+<!-- https://www.w3schools.com/howto/howto_js_image_comparison.asp -->
+
+<!-- [html, js ,css] 禁止區塊反白 -->
+<!-- user-select: none; -->
+<!-- https://ithelp.ithome.com.tw/questions/10194090 -->
+
+<!-- ondragstart   -->
+<!-- https://www.runoob.com/jsref/event-ondragstart.html -->

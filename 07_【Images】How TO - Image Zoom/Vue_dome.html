@@ -1,31 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create an Image Zoom</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-    })
-  </script>
-</body>
 
+      #app {
+        margin: 30px;
+      }
+
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+
+      .zoom_box {
+        border: 1px solid #999;
+        background-repeat: no-repeat;
+      }
+
+      .origin_pic_box {
+        position: relative;
+      }
+
+      .area {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #999;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="zoom_area" ref="zoom_area">
+        <div class="origin_pic_box" @mousemove="changeAreaHandle($event)">
+          <img
+            :src="picurl"
+            alt=""
+            :style="{width:original_width+ 'px'}"
+            ref="origin_pic"
+          />
+          <div
+            class="area"
+            :style="{
+        left:nowLeft+'px',
+        top:nowTop+'px'
+      }"
+            ref="zoom"
+          ></div>
+        </div>
+        <br />
+        <div
+          class="zoom_box"
+          :style="{
+          width:original_width+ 'px',
+          height:calcZoomHeight+ 'px',
+          backgroundImage: 'url('+ picurl + ')',
+          backgroundSize:original_width*zoom_rate+'px',
+          backgroundPositionX:getZoomLeft+'px',
+          backgroundPositionY:getZoomTop+'px'
+        }"
+        ></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            picurl: "https://www.w3schools.com/howto/img_girl.jpg",
+            original_width: 400,
+            zoom_rate: 4,
+            isloading: true,
+            nowLeft: 0,
+            nowTop: 0,
+          };
+        },
+        computed: {
+          calcZoomHeight() {
+            if (!this.isloading) {
+              return this.$refs.origin_pic.offsetHeight;
+            }
+          },
+          half_zoon_w() {
+            return this.$refs.zoom.offsetWidth / 2;
+          },
+
+          half_zoon_h() {
+            return this.$refs.zoom.offsetHeight / 2;
+          },
+          origin_pos_top() {
+            return this.$refs.zoom_area.offsetTop;
+          },
+          origin_pos_left() {
+            return this.$refs.zoom_area.offsetLeft;
+          },
+          getZoomTop() {
+            let resule = this.nowTop * (this.zoom_rate - 1);
+            let max = this.calcZoomHeight * (this.zoom_rate - 1);
+            return resule >= max ? max * -1 : resule * -1;
+          },
+          getZoomLeft() {
+            let resule = this.nowLeft * (this.zoom_rate - 1);
+            let max = this.original_width * (this.zoom_rate - 1);
+            return resule >= max ? max * -1 : resule * -1;
+          },
+        },
+
+        methods: {
+          changeAreaHandle($event) {
+            const all_w = $event.clientX - this.origin_pos_left;
+            const zoom_w = this.half_zoon_w;
+            const all_y = $event.clientY - this.origin_pos_top;
+            const zoom_y = this.half_zoon_h;
+            this.half_zoon_w;
+            if (all_w > zoom_w && all_w < this.original_width - zoom_w) {
+              this.nowLeft = all_w - zoom_w;
+            }
+
+            if (all_y > zoom_y && all_y < this.calcZoomHeight - zoom_y) {
+              this.nowTop = all_y - zoom_y;
+            }
+
+            // console.log($event.clientX);
+            // console.log($event.clientY);
+          },
+        },
+        mounted() {
+          this.isloading = false;
+        },
+      });
+    </script>
+  </body>
 </html>
+
+<!-- W3C Image Zoom  -->
+<!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_zoom -->
+
+<!-- 基于 Vue 的商品主图放大镜方案 -->
+<!-- https://www.infoq.cn/article/d7li4wec8dgabb9bhywb -->
