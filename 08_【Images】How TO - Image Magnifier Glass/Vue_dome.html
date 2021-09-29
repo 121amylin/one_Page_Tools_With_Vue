@@ -105,8 +105,6 @@
             let minY = this.getPicboxTop + this.zoomHalfHeight;
             let maxY =
               this.getPicboxTop + this.getPicboxHeight - this.zoomHalfHeight;
-            let ppX = $event.clientX / this.originSize;
-            let ppY = $event.clientY / this.getPicboxHeight;
 
             if ($event.clientX >= minX && $event.clientX <= maxX) {
               this.bgLeft =
