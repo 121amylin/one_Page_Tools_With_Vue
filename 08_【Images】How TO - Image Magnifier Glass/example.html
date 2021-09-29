@@ -39,6 +39,7 @@
       glass.style.backgroundImage = "url('" + img.src + "')";
       glass.style.backgroundRepeat = "no-repeat";
       glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+      console.log((img.width * zoom) + "px " + (img.height * zoom) + "px")
       bw = 3;
       w = glass.offsetWidth / 2;
       h = glass.offsetHeight / 2;
@@ -101,7 +102,7 @@
   <p>Mouse over the image:</p>
 
   <div class="img-magnifier-container">
-    <img id="myimage" src="img_girl.jpg" width="600" height="400">
+    <img id="myimage" src="https://www.w3schools.com/howto/img_girl.jpg" width="600" height="400">
   </div>
 
   <p>Feel free to change the strength of the magnifier glass when initiating the magnify function.</p>

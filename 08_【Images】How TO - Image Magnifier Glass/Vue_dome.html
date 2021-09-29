@@ -1,31 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue_dome</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-        }
-      },
-      computed: {},
-      methods: {
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    })
-  </script>
-</body>
 
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+
+      .zoom {
+        border: 2px solid rgb(245, 112, 4);
+      }
+
+      .pic_box {
+        position: relative;
+      }
+
+      .zoom {
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" v-if="!isloading">
+      <div
+        class="pic_box"
+        :style="{width:originSize+'px'}"
+        @mouseMove="moveZoom($event)"
+        @touchmove="moveZoom($event)"
+        ref="pic_box"
+      >
+        <img :src="picUrl" alt="" />
+        <div class="zoom" :style="zoomStyle"></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            picUrl: "https://www.w3schools.com/howto/img_girl.jpg",
+            originSize: 400,
+            rate: 2,
+            zoomWidth: 60,
+            zoomHeight: 60,
+            zoomTop: 0,
+            zoomLeft: 0,
+            isloading: true,
+            bgTop: 0,
+            bgLeft: 0,
+          };
+        },
+        computed: {
+          getPicboxHeight() {
+            return this.$refs.pic_box.offsetHeight;
+          },
+          getPicboxTop() {
+            return this.$refs.pic_box.offsetLeft;
+          },
+          getPicboxLeft() {
+            return this.$refs.pic_box.offsetTop;
+          },
+          zoomStyle() {
+            return {
+              width: this.zoomWidth + "px",
+              height: this.zoomHeight + "px",
+              top: this.zoomTop + "px",
+              left: this.zoomLeft + "px",
+              backgroundImage: `url(${this.picUrl})`,
+              backgroundSize: this.originSize * this.rate + "px",
+              backgroundPositionX: this.bgLeft + "px",
+              backgroundPositionY: this.bgTop + "px",
+            };
+          },
+          zoomHalfWidth() {
+            return this.zoomWidth / 2;
+          },
+          zoomHalfHeight() {
+            return this.zoomHeight / 2;
+          },
+        },
+        methods: {
+          moveZoom($event) {
+            let minX = this.getPicboxLeft + this.zoomHalfWidth;
+            let maxX =
+              this.originSize + this.getPicboxLeft - this.zoomHalfWidth;
+            let minY = this.getPicboxTop + this.zoomHalfHeight;
+            let maxY =
+              this.getPicboxTop + this.getPicboxHeight - this.zoomHalfHeight;
+            let ppX = $event.clientX / this.originSize;
+            let ppY = $event.clientY / this.getPicboxHeight;
+
+            if ($event.clientX >= minX && $event.clientX <= maxX) {
+              this.bgLeft =
+                this.rate * $event.clientX * -1 + this.zoomHalfWidth;
+              this.zoomLeft = $event.clientX - this.zoomHalfWidth;
+            }
+
+            if ($event.clientY >= minY && $event.clientY <= maxY) {
+              this.bgTop =
+                this.rate * $event.clientY * -1 + this.zoomHalfHeight;
+              this.zoomTop = $event.clientY - this.zoomHalfHeight;
+            }
+          },
+        },
+        mounted() {
+          this.isloading = false;
+        },
+      });
+    </script>
+  </body>
 </html>
+
+<!-- https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp -->
