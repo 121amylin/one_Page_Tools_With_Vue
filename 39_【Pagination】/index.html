@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{nowpage}}
+    <br>
+    {{showlist}}
+    <ul>
+      <Li v-for="n in showlist">{{n}}</Li>
+    </ul>
+    <div class="num_area">
+      <button @click="pointPage(1)" v-show="nowpage!==1">&#8606</button>
+      <button @click="changePage(-1)" v-show="nowpage!==1">&#8592</button>
+      <button v-for="n in allPage" @click="pointPage(n)">{{n}}</button>
+      <button @click="changePage(1)" v-show="nowpage!==allPage">&#8594</button>
+      <button @click="pointPage(allPage)" v-show="nowpage!==allPage">&#8608</button>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
+    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
+    crossorigin='anonymous'></script>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          per: 5,
+          nowpage: 3,
+          list: ["1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7", "1-8", "1-9", "1-10", "1-11", "1-12"]
+
+        }
+      },
+      computed: {
+        allPage() {
+          return Math.floor(this.list.length / this.per) + 1
+        },
+        showlist() {
+          const start = ((this.nowpage - 1) * this.per)
+          const end = this.nowpage * this.per
+          console.log(start, end)
+          return this.list.slice(start, end)
+        }
+
+      },
+      methods: {
+        changePage(dir) {
+          this.nowpage += dir
+          if (this.nowpage > this.allPage) {
+            this.nowpage = this.allPage
+          } else if (this.nowpage < 0) {
+            this.nowpage = 0
+          }
+        },
+        pointPage(num) {
+          this.nowpage = num
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
+
+
+<!-- 特殊字符 -->
+<!-- https://blog.csdn.net/Iversons/article/details/78996776 -->

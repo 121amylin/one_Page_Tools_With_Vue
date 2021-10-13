@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .frame_box {
+      overflow: hidden;
+      position: relative;
+    }
+    .pic{
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="frame_box" v-if="!is_loading" :style="{width:get_full_W+'px';height:get_pic_h+'px'}">
+      <img class="pic" :src="picUrl" alt="" ref="pic">
+    </div>
+    <button @cllic="moveHandle(-1)">PREV</button>
+    <button @cllic="moveHandle(1)">NEXT</button>
+
+    <input type="range" name="bar" id="bar" max="100" :value="get_progeccess" min="0" @mousedown="moveToggle(true)"
+      @mouseup="moveToggle(false)" @mouseleave="moveToggle(false)"  @mousemove="dragHandle($event)">
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
+    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
+    crossorigin='anonymous'></script>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          is_loading: true,
+          picUrl: '/images/alfa.png',
+          frame_num: 16,
+          now_frame: 0,
+          is_move: false
+        }
+      },
+      computed: {
+        get_pic_w() {
+          return this.$ref.pic.offsetWidth()
+        },
+        get_pic_h() {
+          return this.$ref.pic.offsetHegth()
+        },
+        get_full_W() {
+          return this.get_pic_w / this.frame_num
+        },
+        get_progeccess() {
+          return 100 / this.frame_num * this.now_frame
+        },
+        get_pic_move() {
+          return this.now_frame * this.get_full_W
+        }
+      },
+      methods: {
+        moveToggle(toggle) {
+          this.is_move = toggle
+        },
+        moveHandle(toggle) {
+          this.now_frame += toggle
+          if (this.now_frame >= this.frame_num) {
+            this.now_frame = this.frame_num
+          }
+          if (this.now_frame =< 0) {
+            this.now_frame = 0
+          }
+        },
+        dragHandle($event){
+          if(!is_move) return
+          const pos=$event
+        }
+      },
+      mounted() {
+        this.isloading = !this.isloading
+      }
+    })
+  </script>
+
+
+</body>
+
+</html>
