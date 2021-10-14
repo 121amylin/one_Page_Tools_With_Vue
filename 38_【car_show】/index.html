@@ -1,93 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    .frame_box {
-      overflow: hidden;
-      position: relative;
-    }
-    .pic{
-      position: absolute;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div id="app">
-    <div class="frame_box" v-if="!is_loading" :style="{width:get_full_W+'px';height:get_pic_h+'px'}">
-      <img class="pic" :src="picUrl" alt="" ref="pic">
-    </div>
-    <button @cllic="moveHandle(-1)">PREV</button>
-    <button @cllic="moveHandle(1)">NEXT</button>
-
-    <input type="range" name="bar" id="bar" max="100" :value="get_progeccess" min="0" @mousedown="moveToggle(true)"
-      @mouseup="moveToggle(false)" @mouseleave="moveToggle(false)"  @mousemove="dragHandle($event)">
-  </div>
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'
-    integrity='sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=='
-    crossorigin='anonymous'></script>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data() {
-        return {
-          is_loading: true,
-          picUrl: '/images/alfa.png',
-          frame_num: 16,
-          now_frame: 0,
-          is_move: false
-        }
-      },
-      computed: {
-        get_pic_w() {
-          return this.$ref.pic.offsetWidth()
-        },
-        get_pic_h() {
-          return this.$ref.pic.offsetHegth()
-        },
-        get_full_W() {
-          return this.get_pic_w / this.frame_num
-        },
-        get_progeccess() {
-          return 100 / this.frame_num * this.now_frame
-        },
-        get_pic_move() {
-          return this.now_frame * this.get_full_W
-        }
-      },
-      methods: {
-        moveToggle(toggle) {
-          this.is_move = toggle
-        },
-        moveHandle(toggle) {
-          this.now_frame += toggle
-          if (this.now_frame >= this.frame_num) {
-            this.now_frame = this.frame_num
-          }
-          if (this.now_frame =< 0) {
-            this.now_frame = 0
-          }
-        },
-        dragHandle($event){
-          if(!is_move) return
-          const pos=$event
-        }
-      },
-      mounted() {
-        this.isloading = !this.isloading
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .frame_box {
+        overflow: hidden;
+        position: relative;
       }
-    })
-  </script>
+      .pic {
+        position: absolute;
+      }
+      html,
+      body {
+        font-size: 10px;
+      }
+      *{
+        margin: 0;
+      }
+      .bar {
+        width: 300px;
+        height: 4px;
+        background-color: #999;
+        position: relative;
+      }
+      .btn {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: rgb(224, 13, 13);
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app">
+      <div class="frame_box" :style="{width:full_w+'px',height:pic_h+'px'}">
+        <img
+          class="pic"
+          :src="picUrl"
+          alt=""
+          ref="picelement"
+          @load="get_pic_into"
+          :style="get_pic_move"
+        />
+      </div>
+      <button @click="moveHandle(-1)" ref="btn">PREV</button>
+      <button @click="moveHandle(1)">NEXT</button>
+      <p>123</p>
 
-</body>
+      <div class="bar" ref="bar">
+        <div class="btn" @mousemove="moveHandle()"></div>
+      </div>
+    </div>
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            loading_end: false,
+            picUrl: "images/alfa.png",
+            frame_num: 16,
+            now_frame: 0,
+            is_move: false,
+            pic_w: null,
+            pic_h: null,
+            full_w: null,
+          };
+        },
+        computed: {
+          get_progeccess() {
+            return (100 / (this.frame_num - 1)) * this.now_frame;
+          },
+          get_pic_move() {
+            return `transform: translateX(${
+              this.now_frame * this.full_w * -1 + "px"
+            });`;
+          },
+          get_max() {
+            return this.frame_num - 1;
+          },
+          get_bar_into() {
+            return this.$refs.bar.offsetWidth;
+          },
+        },
+        methods: {
+          test(e) {},
+          get_pic_into() {
+            this.pic_w = this.$refs.picelement.offsetWidth;
+            this.pic_h = this.$refs.picelement.offsetHeight;
+            this.full_w = this.pic_w / this.frame_num;
+          },
+          moveToggle(toggle) {
+            if (this.loading_end) {
+              this.is_move = toggle;
+            }
+          },
+          moveHandle(toggle) {
+            if (this.now_frame >= this.get_max && toggle > 0) {
+              console.log(1);
+              this.now_frame = 0;
+            } else if (this.now_frame <= 0 && toggle < 0) {
+              console.log(2);
+              this.now_frame = this.get_max;
+            } else {
+              this.now_frame += toggle;
+            }
+          },
+          dragHandle($event) {
+            if (!this.is_move) return;
+            console.log($event);
+          },
+        },
+        mounted() {
+          this.loading_end = true;
+        },
+      });
+    </script>
+  </body>
 </html>
